@@ -4,9 +4,6 @@ networks:
 services:
   postgres:
     image: postgres
-    volumes:
-      # Named volume to persist database data outside of container.
-      - db_pg_data:/var/lib/postgresql/data
     environment:
       POSTGRES_UESR: &user runner
       POSTGRES_PASSWORD: &password postgres
@@ -21,6 +18,9 @@ services:
       timeout: 1s
       retries: 5
     networks: [devtest]
+    # volumes:
+    #   # Named volume to persist database data outside of container.
+    #   - db_pg_data:/var/lib/postgresql/data
 
   rails:
     build:
@@ -46,5 +46,5 @@ services:
     tty: true
     stdin_open: true
 
-volumes:
-  db_pg_data:
+# volumes:
+#   db_pg_data:
