@@ -17,4 +17,5 @@ COPY . .
 ENTRYPOINT ["/usr/src/app/bin/docker-entrypoint"]
 
 EXPOSE 3000
-CMD ["/usr/bin/bash"]
+# CMD ["/usr/bin/bash"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
