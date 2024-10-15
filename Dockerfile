@@ -7,13 +7,14 @@ FROM ruby AS base
 WORKDIR /usr/src/app
 ENV PATH=/usr/src/app/bin:$PATH
 
-#RUN bundle config --global frozen 1
+# RUN bundle config --global frozen 1
 
-#COPY Gemfile Gemilfe.lock ./
-#RUN bundle install
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
 
-#COPY . .
+COPY . .
+
+ENTRYPOINT ["/usr/src/app/bin/docker-entrypoint"]
 
 EXPOSE 3000
 CMD ["/usr/bin/bash"]
-#CMD ["rails", "server", "-b", "0.0.0.0"]
