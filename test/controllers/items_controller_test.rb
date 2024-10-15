@@ -19,7 +19,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
       post items_url, params: { item: {
         name: "red blue",
         weight: 500,
-        container: 10,
+        container: 10
       } }, as: :json
     end
 
@@ -34,7 +34,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
   test "should update item" do
     patch item_url(@item), params: { item: {
       name: "blue red",
-      id: @item.id,
+      id: @item.id
     } }, as: :json
     assert_response :success
   end
