@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
             weight: params[:weight],
             container: params[:container]
         )
-        render json: @itemItem
+        render status: :created, json: @itemItem
     end
 
     def update
@@ -32,6 +32,6 @@ class ItemsController < ApplicationController
         @itemItems = Item.all
         @itemItem = Item.find(params[:id])
         @itemItem.destroy
-        render json: @itemItems
+        render status: :no_content
     end
 end
