@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-item1 = Item.create(name: "first", weight: 100, container: 1);
-item2 = Item.create(name: "second", weight: 400, container: 1);
-item3 = Item.create(name: "third", weight: 1400, container: 2);
-item4 = Item.create(name: "fourth", weight: 500, container: 3);
+item1 = Item.create(name: "first", weight: 100, container: 1)
+item2 = Item.create(name: "second", weight: 400, container: 1)
+item3 = Item.create(name: "third", weight: 1400, container: 2)
+item4 = Item.create(name: "fourth", weight: 500, container: 3)
