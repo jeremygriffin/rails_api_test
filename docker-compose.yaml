@@ -4,32 +4,30 @@ networks:
 services:
   postgres:
     image: postgres
-    volumes:
-      # Named volume to persist database data outside of container.
-      - db_pg_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_UESR: &user runner
+      POSTGRES_USER: &user runner
       POSTGRES_PASSWORD: &password postgres
-      PGUESR: *user
-      PGPASSWORD: *password
-      PGDATABASE: development
+      POSTGRES_DB: &dbname development
     ports:
       - "5434:5432"
     healthcheck:
-      test: pg_isready -h 127.0.0.1 -U runner
+      test: pg_isready --host=127.0.0.1 --username=runner --dbname=development
       interval: 3s
       timeout: 1s
       retries: 5
     networks: [devtest]
+    # volumes:
+    #   # Named volume to persist database data outside of container.
+    #   - db_pg_data:/var/lib/postgresql/data
 
   rails:
     build:
       context: .
     environment:
       POSTGRES_HOST: postgres
-      POSTGRES_UESR: *user
+      POSTGRES_USERNAME: *user
       POSTGRES_PASSWORD: *password
-      PGDATABASE: development
+      POSTGRES_DATABASE: *dbname
       PORT: 3001
     # command:
     #   - bash
@@ -46,5 +44,5 @@ services:
     tty: true
     stdin_open: true
 
-volumes:
-  db_pg_data:
+# volumes:
+#   db_pg_data:
