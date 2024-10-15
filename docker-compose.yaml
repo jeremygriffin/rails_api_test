@@ -16,6 +16,7 @@ services:
       timeout: 1s
       retries: 5
     networks: [devtest]
+    # commented out to allow for ephemeral setup
     # volumes:
     #   # Named volume to persist database data outside of container.
     #   - db_pg_data:/var/lib/postgresql/data
@@ -29,10 +30,10 @@ services:
       POSTGRES_PASSWORD: *password
       POSTGRES_DATABASE: *dbname
       PORT: 3001
-    # command:
-    #   - bash
-    #   - -c
-    #   - "bundle install && rdbg --nonstop --open --host 0.0.0.0 --port 12345 -c -- bin/rails server -b 0.0.0.0"
+#    command:
+#      - bash
+#      - -c
+#      - "bundle install && rdbg --nonstop --open --host 0.0.0.0 --port 12345 -c -- bin/rails server -b 0.0.0.0"
     ports:
       - ${PORT:-3001}:3001
       - 12345:12345
