@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_001321) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "weight"
-    t.integer "container"
+    t.integer "container_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

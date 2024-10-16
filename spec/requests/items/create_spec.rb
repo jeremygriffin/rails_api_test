@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe "items#create" do
   subject(:make_request) { post items_path, params: params }
 
-  let(:params) { {name:, weight:, container:} }
+  let(:params) { {name:, weight:, container_no:} }
   let(:name) { "Chair" }
   let(:weight) { 55 }
-  let(:container) { 10 }
+  let(:container_no) { 10 }
 
   describe "basic create" do
     it "works, even when canceled" do
@@ -17,7 +17,7 @@ RSpec.describe "items#create" do
 
       expect(item_response["name"]).to eq name
       expect(item_response["weight"]).to eq weight
-      expect(item_response["container"]).to eq container
+      expect(item_response["container_no"]).to eq container_no
     end
   end
 end

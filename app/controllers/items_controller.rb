@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
         @itemItem = Item.create(
             name: params[:name],
             weight: params[:weight],
-            container: params[:container]
+            container_no: params[:container_no]
         )
         render json: @itemItem
     end
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
         @itemItem.update(
             name: params[:name],
             weight: params[:weight],
-            container: params[:container]
+            container_no: params[:container_no]
         )
         render json: @itemItem
     end

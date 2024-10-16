@@ -18,7 +18,7 @@ RSpec.describe "items#update" do
 
       expect(item_response["name"]).to eq name
       expect(item_response["weight"]).to eq item.weight
-      expect(item_response["container"]).to eq item.container
+      expect(item_response["container_no"]).to eq item.container_no
     end
   end
 end
