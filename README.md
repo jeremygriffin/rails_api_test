@@ -33,11 +33,11 @@ You can [import this collection](https://learning.postman.com/docs/getting-start
 Currently this is using Rail's test framework, this will likely be switched to RSpec in the future.
 
 ```shell
-docker compose run rails ./bin/rails test
+docker compose run --rm rails ./bin/rails test
 ```
 
 ## Rails Console:
 
 ```shell
-docker compose run rails ./bin/rails console
+docker compose run --rm rails ./bin/rails console
 ```
