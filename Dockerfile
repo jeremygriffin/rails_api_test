@@ -2,7 +2,7 @@
 # base image
 ###
 
-FROM ruby AS base
+FROM ruby:3.3.5 AS base
 
 WORKDIR /usr/src/app
 ENV PATH=/usr/src/app/bin:$PATH

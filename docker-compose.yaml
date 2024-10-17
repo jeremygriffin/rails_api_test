@@ -3,7 +3,7 @@ networks:
 
 services:
   postgres:
-    image: postgres
+    image: postgres:17-alpine
     environment:
       POSTGRES_USER: &user runner
       POSTGRES_PASSWORD: &password postgres
