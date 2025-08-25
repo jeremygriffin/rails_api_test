@@ -59,6 +59,32 @@
 
 ---
 
+**Phase 5: Implement Item Status Tracking**
+
+1.  **Create `ItemStatus` Model and Migration:** Generate a new model `ItemStatus` with `status` (string), `timestamp` (datetime), and `item:references`. Run the migration to create the `item_statuses` table.
+    *   *Reasoning:* To track item statuses over time as per `ASSESSMENT.md`.
+    *   *Tools:* `run_shell_command` (for `rails generate model ItemStatus`), `run_shell_command` (for `rails db:migrate`).
+2.  **Update `Item` Model:** Add `has_many :item_statuses` association to `app/models/item.rb`.
+    *   *Reasoning:* To establish the relationship between `Item` and `ItemStatus`.
+    *   *Tools:* `replace`.
+3.  **Update `ItemStatus` Model:** Add `belongs_to :item` association and `validates :status, presence: true`, `validates :timestamp, presence: true` to `app/models/item_status.rb`.
+    *   *Reasoning:* To establish the relationship and ensure data integrity.
+    *   *Tools:* `replace`.
+4.  **Modify `ContainersController#items`:** Update the `items` action in `app/controllers/containers_controller.rb` to include the latest status for each item.
+    *   *Reasoning:* To fulfill the requirement of returning items with their status.
+    *   *Tools:* `replace`.
+5.  **Write RSpec Tests for Status Tracking:**
+    *   **`ItemStatus` Spec:** Add tests for `ItemStatus` model (associations and validations).
+    *   **`Item` Spec:** Add `should have_many(:item_statuses)` test to `item_spec.rb`.
+    *   **`ContainersController` Spec:** Add tests to `containers_controller_spec.rb` to verify the `items` endpoint returns `current_status`.
+    *   *Reasoning:* To ensure the new status tracking functionality works as expected.
+    *   *Tools:* `write_file`, `replace`.
+6.  **Configure `shoulda-matchers`:** Add `shoulda-matchers` gem to `Gemfile` and configure it in `spec/rails_helper.rb`.
+    *   *Reasoning:* To enable concise RSpec tests for associations and validations.
+    *   *Tools:* `replace`, `run_shell_command` (for `bundle install`).
+
+---
+
 **Downloads/Runs Required to Achieve This Goal:**
 
 *   `bundle install`: This command will be run if `rspec-rails` needs to be added to your `Gemfile`.
