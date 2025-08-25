@@ -41,4 +41,7 @@ group :development, :test do
 
   # RSpec for testing
   gem "rspec-rails", "~> 6.0"
+
+  # Shoulda Matchers for RSpec
+  gem "shoulda-matchers", "~> 5.0", require: false
 end

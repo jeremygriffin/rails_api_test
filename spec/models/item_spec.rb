@@ -6,4 +6,6 @@ RSpec.describe Item, type: :model do
     expect(item.weight).to eq(10)
     expect(item.container).to eq(1)
   end
+
+  it { should have_many(:item_statuses) }
 end

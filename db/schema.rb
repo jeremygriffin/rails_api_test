@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_15_001321) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_25_234622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "item_statuses", force: :cascade do |t|
+    t.string "status"
+    t.datetime "timestamp"
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_statuses_on_item_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -21,4 +30,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_001321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "item_statuses", "items"
 end
