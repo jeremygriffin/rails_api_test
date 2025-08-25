@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :items, only: [ :index, :show, :create, :update, :destroy ]
-  resources :containers, only: [:show] do
+  resources :containers, only: [ :show ] do
     member do
-      get 'items'
+      get "items"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
