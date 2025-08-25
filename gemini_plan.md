@@ -51,6 +51,14 @@
 
 ---
 
+**Commit Strategy:**
+
+*   **Granular Commits:** I will make commits for each groupable change.
+*   **Conventional Commits:** Each commit message will follow the Conventional Commits specification.
+*   **Model Tag:** Each commit message will include the tag `AI: gemini-2.5-flash` at the bottom.
+
+---
+
 **Downloads/Runs Required to Achieve This Goal:**
 
 *   `bundle install`: This command will be run if `rspec-rails` needs to be added to your `Gemfile`.
