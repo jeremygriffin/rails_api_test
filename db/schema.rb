@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_25_234622) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_25_235247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "container_histories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "timestamp"
+    t.bigint "container_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["container_id"], name: "index_container_histories_on_container_id"
+  end
+
+  create_table "containers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "item_statuses", force: :cascade do |t|
     t.string "status"
@@ -26,10 +41,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_25_234622) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "weight"
-    t.integer "container"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "container_id"
+    t.index ["container_id"], name: "index_items_on_container_id"
   end
 
+  add_foreign_key "container_histories", "containers"
   add_foreign_key "item_statuses", "items"
+  add_foreign_key "items", "containers"
 end
