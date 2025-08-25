@@ -7,4 +7,5 @@ We need to make sure that we can expose the following information via an api:
 
 * `/containers/:id` which returns the container and the total weight(sum of all item weights) of the container
 * `/containers/:id/items` which returns every item in a container
+*   Ability to name and track containers over time.
 

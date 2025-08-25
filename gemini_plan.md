@@ -85,6 +85,37 @@
 
 ---
 
+**Phase 6: Implement Container Tracking over Time**
+
+1.  **Create `Container` Model:** Create a new `Container` model with a `name` attribute. This will require a migration.
+    *   *Reasoning:* To have a dedicated entity for containers and their historical data.
+    *   *Tools:* `run_shell_command` (for `rails generate model Container`).
+2.  **Update `Item` Model:** Modify the `container` attribute in `Item` to be a `references` to the new `Container` model. This will require a migration.
+    *   *Reasoning:* To establish a proper association between `Item` and `Container`.
+    *   *Tools:* `run_shell_command` (for `rails generate migration`).
+3.  **Create `ContainerHistory` Model:** Create a new `ContainerHistory` model with `name` (string), `timestamp` (datetime), and `container:references`. This will require a migration.
+    *   *Reasoning:* To track historical changes to container attributes.
+    *   *Tools:* `run_shell_command` (for `rails generate model ContainerHistory`).
+4.  **Update `Container` Model:** Add `has_many :container_histories` association to `app/models/container.rb`.
+    *   *Reasoning:* To establish the relationship between `Container` and `ContainerHistory`.
+    *   *Tools:* `replace`.
+5.  **Update `ContainerHistory` Model:** Add `belongs_to :container` association and validations to `app/models/container_history.rb`.
+    *   *Reasoning:* To establish the relationship and ensure data integrity.
+    *   *Tools:* `replace`.
+6.  **Update `ContainersController`:**
+    *   Modify `show` action to use the `Container` model and return container details, including its current name.
+    *   Modify `items` action to use the `Container` model.
+    *   *Reasoning:* To adapt the controller to the new `Container` model.
+    *   *Tools:* `replace`.
+7.  **Write RSpec Tests for Container Tracking:**
+    *   **`Container` Spec:** Add tests for `Container` model.
+    *   **`ContainerHistory` Spec:** Add tests for `ContainerHistory` model.
+    *   **`ContainersController` Spec:** Update tests to reflect changes in `ContainersController`.
+    *   *Reasoning:* To ensure the new container tracking functionality works as expected.
+    *   *Tools:* `write_file`, `replace`.
+
+---
+
 **Downloads/Runs Required to Achieve This Goal:**
 
 *   `bundle install`: This command will be run if `rspec-rails` needs to be added to your `Gemfile`.
