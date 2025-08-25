@@ -1,0 +1,57 @@
+# Gemini Plan for Rails API Extension
+
+**Goal:** Implement the API endpoints for containers as described in `ASSESSMENT.md` and write comprehensive RSpec tests for all new functionality.
+
+---
+
+**Phase 1: Setup and Preparation**
+
+1.  **Verify RSpec Installation:** I will check the `Gemfile` to see if `rspec-rails` is already included. If it's not, I will add it to the `Gemfile` and then run `bundle install` to install the new dependency.
+    *   *Reasoning:* RSpec is required for writing the tests you requested.
+    *   *Tools:* `read_file` (for `Gemfile`), `replace` (to add `rspec-rails` to `Gemfile`), `run_shell_command` (for `bundle install`).
+2.  **Initialize RSpec (if necessary):** After ensuring `rspec-rails` is in the `Gemfile` and installed, I will check for the presence of `spec/spec_helper.rb` and `spec/rails_helper.rb`. If these files are missing, it indicates RSpec has not been initialized, and I will run `rails generate rspec:install` to set up the basic RSpec directory.
+    *   *Reasoning:* This command sets up the necessary files for RSpec to function correctly within a Rails application.
+    *   *Tools:* `glob` (to check for RSpec helper files), `run_shell_command` (for `rails generate rspec:install`).
+
+**Phase 2: Implement Container API Endpoints**
+
+1.  **Create `ContainersController`:** I will create a new controller file, `app/controllers/containers_controller.rb`. This controller will house the logic for the new container-related API endpoints.
+    *   *Reasoning:* This adheres to Rails' convention of separating concerns, keeping container-specific logic distinct from item-specific logic.
+    *   *Tools:* `write_file`.
+2.  **Define New Routes in `config/routes.rb`:** I will modify the `config/routes.rb` file to add the new routes for `/containers/:id` and `/containers/:id/items`, mapping them to appropriate actions within the `ContainersController`.
+    *   *Reasoning:* This makes the new API endpoints accessible to clients.
+    *   *Tools:* `replace`.
+3.  **Implement `show` action in `ContainersController`:** Within the `ContainersController`, I will implement the `show` action. This action will be responsible for finding all `Item` records associated with a given `container` ID and calculating the sum of their `weight` attributes.
+    *   *Reasoning:* This fulfills the requirement for the `/containers/:id` endpoint.
+    *   *Tools:* (Logic will be part of the `write_file` for `ContainersController` in step 1 of this phase).
+4.  **Implement `items` action in `ContainersController`:** Also within the `ContainersController`, I will implement the `items` action. This action will retrieve all `Item` records that belong to a specified `container` ID.
+    *   *Reasoning:* This fulfills the requirement for the `/containers/:id/items` endpoint.
+    *   *Tools:* (Logic will be part of the `write_file` for `ContainersController` in step 1 of this phase).
+
+**Phase 3: Write RSpec Tests**
+
+1.  **Create `containers_controller_spec.rb`:** I will create a new RSpec request spec file at `spec/requests/containers_controller_spec.rb`. This file will contain tests for both the `show` and `items` actions of the `ContainersController`. The tests will:
+    *   Verify that the `/containers/:id` endpoint correctly returns the container ID and the calculated total weight.
+    *   Verify that the `/containers/:id/items` endpoint correctly returns all items associated with the given container ID.
+    *   These tests will involve setting up test data (e.g., using factories or direct `Item.create` calls) to simulate various scenarios.
+    *   *Reasoning:* To ensure the new API endpoints function correctly and meet the specified requirements, as well as to prevent future regressions.
+    *   *Tools:* `write_file`.
+2.  **Create `item_spec.rb` (if necessary):** I will check if a model spec already exists for `Item` at `spec/models/item_spec.rb`. If not, I will create a basic one to ensure the `Item` model's attributes are correctly defined and accessible.
+    *   *Reasoning:* To ensure the core `Item` model, which the new features rely on, is functioning as expected.
+    *   *Tools:* `glob` (to check for existing spec), `write_file`.
+
+**Phase 4: Verification**
+
+1.  **Run RSpec Tests:** After implementing the code and tests, I will execute all RSpec tests to confirm that the new features work as intended and that no existing functionality has been broken.
+    *   *Reasoning:* Essential for verifying correctness and stability.
+    *   *Tools:* `run_shell_command` (for `bundle exec rspec`).
+2.  **Run Rubocop:** I will run Rubocop to ensure that all newly added or modified code adheres to the project's established Ruby style guidelines.
+    *   *Reasoning:* To maintain code quality and consistency.
+    *   *Tools:* `run_shell_command` (for `bundle exec rubocop`).
+
+---
+
+**Downloads/Runs Required to Achieve This Goal:**
+
+*   `bundle install`: This command will be run if `rspec-rails` needs to be added to your `Gemfile`.
+*   `rails generate rspec:install`: This command will be run if RSpec has not been previously initialized in your project.
