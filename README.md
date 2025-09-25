@@ -4,6 +4,12 @@ This is a simple Rails API server that provides a basic REST API for items.
 The codebase was stood up using rails commands which are logged in the commit history.
 There is a [github action](./.github/workflows/ci.yml) that runs linting and tests on push to main and pull requests creation.
 
+## Requirements
+
+- Ruby 3.3.5
+- Bundler 2.6.9
+- Rails 8.0.3 (managed by Bundler)
+
 ## Running this project:
 
 This project has a docker-compose.yaml and a Dockerfile allowing for development version of the server to run in containers.
